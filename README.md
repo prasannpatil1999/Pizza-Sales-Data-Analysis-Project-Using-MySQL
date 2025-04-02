@@ -35,19 +35,19 @@ This project involves analyzing pizza sales data to uncover key insights regardi
   
 ### Key Business Questions Answered
 
-- Q1: Retrieve the total number of orders placed.
-- Q2: Calculate the total revenue generated from pizza sales.
-- Q3: Identify the highest-priced pizza.
-- Q4: Identify the most common pizza size ordered.
-- Q5: List the top 5 most ordered pizza types along with their quantities.
-- Q6: Join the necessary tables to find the total quantity of each pizza category ordered.
-- Q7: Determine the distribution of orders by hour of the day.
-- Q8: Join relevant tables to find the category-wise distribution of pizzas.
-- Q9: Group the orders by date and calculate the average number of pizzas ordered per day.
-- Q10: Determine the top 3 most ordered pizza types based on revenue.
-- Q11: Calculate the percentage contribution of each pizza Category type  to total revenue.
-- Q12: Analyze the cumulative revenue generated over time.
-- Q13: Determine the top 3 most ordered pizza types based on revenue for each pizza category
+- Q1: Retrieve the total number of orders placed.?
+- Q2: Calculate the total revenue generated from pizza sales.?.
+- Q3: Identify the highest-priced pizza.?.
+- Q4: Identify the most common pizza size ordered.?.
+- Q5: List the top 5 most ordered pizza types along with their quantities.?.
+- Q6: Join the necessary tables to find the total quantity of each pizza category ordered.?.
+- Q7: Determine the distribution of orders by hour of the day.?.
+- Q8: Join relevant tables to find the category-wise distribution of pizzas.?.
+- Q9: Group the orders by date and calculate the average number of pizzas ordered per day.?.
+- Q10: Determine the top 3 most ordered pizza types based on revenue.?.
+- Q11: Calculate the percentage contribution of each pizza Category type  to total revenue.?.
+- Q12: Analyze the cumulative revenue generated over time.?.
+- Q13: Determine the top 3 most ordered pizza types based on revenue for each pizza category?.
 
 ### Project Files
 - 📊 order_details, orders, pizza_types and pizzas" (CSV File) - Contains all data.
@@ -58,7 +58,7 @@ This project involves analyzing pizza sales data to uncover key insights regardi
 - Use the Readme file to get answers
 
 ### Insights & Findings
--- Q1: Retrieve the total number of orders placed.
+-- Q1: Retrieve the total number of orders placed.?.
 ````sql
 select count(*)
 from orders
@@ -68,7 +68,7 @@ Total Orders|
 ---------------------|
  21350     |
 
--- Q2: Calculate the total revenue generated from pizza sales.
+-- Q2: Calculate the total revenue generated from pizza sales.?.
 ````sql
 select ROUND(SUM(price),2) AS total_revenue
 from pizzas P JOIN order_details od on p.pizza_id = od.pizza_id
@@ -79,7 +79,7 @@ Total Revenue|
  801944.7    |
 
 
--- Q3: Identify the highest-priced pizza.
+-- Q3: Identify the highest-priced pizza.?.
 ````sql
 select name
 from pizzas p join pizza_types pt on p.pizza_type_id = pt.pizza_type_id
@@ -90,7 +90,7 @@ Highest-priced pizz|
 ---------------------|
 The Greek Pizza    |
 
--- Q4: Identify the most common pizza size ordered.
+-- Q4: Identify the most common pizza size ordered?.
 ````sql
 select  size,SUM(quantity) as count_pizza_sizes
 from pizzas p join order_details od on p.pizza_id = od.pizza_id
@@ -107,7 +107,7 @@ order by count_pizza_sizes desc
 | XXL  | 28     |
 
 
--- Q5: List the top 5 most ordered pizza types along with their quantities.
+-- Q5: List the top 5 most ordered pizza types along with their quantities?.
 ````sql
 select  pizza_type_id,SUM(quantity) as count_pizza_sizes
 from pizzas p join order_details od on p.pizza_id = od.pizza_id
@@ -126,7 +126,7 @@ limit 5
 
 
 
--- Q6: Join the necessary tables to find the total quantity of each pizza category ordered.
+-- Q6: Join the necessary tables to find the total quantity of each pizza category ordered?.
 ````sql
 Select  category,sum(quantity) as pizza_counts
 from pizzas p join order_details od on p.pizza_id = od.pizza_id
@@ -143,7 +143,7 @@ order by pizza_counts desc
 | Chicken         | 11050  |
 
 
--- Q7: Determine the distribution of orders by hour of the day.
+-- Q7: Determine the distribution of orders by hour of the day?.
 ````sql
 select HOUR(time) AS hours,count(*) as count_of_orders
 from orders
@@ -170,7 +170,7 @@ order by hours asc
 | 23              | 28     |
 
 
--- Q8: Join relevant tables to find the category-wise distribution of pizzas.
+-- Q8: Join relevant tables to find the category-wise distribution of pizzas?.
 ````sql
 Select  category,COUNT(name) as count_of_names
 from pizza_types 
@@ -186,7 +186,7 @@ order by count_of_names
 | Veggie       | 9      |
 
 
--- Q9: Group the orders by date and calculate the average number of pizzas ordered per day.
+-- Q9: Group the orders by date and calculate the average number of pizzas ordered per day?.
 ````sql
 with cte as  (
 select date,SUM(quantity) as sum_of_quantity
@@ -201,7 +201,7 @@ from cte
 |-----------------------------|
 | 138.4749                    |
 
--- Q10: Determine the top 3 most ordered pizza types based on revenue.
+-- Q10: Determine the top 3 most ordered pizza types based on revenue?.
 ````sql
 -- pizza type here means name of pizza
 select pt.name,sum(od.quantity * p.price) AS revenue
@@ -220,7 +220,7 @@ limit 3
 
 
 
--- Q11: Calculate the percentage contribution of each pizza Category type  to total revenue.
+-- Q11: Calculate the percentage contribution of each pizza Category type  to total revenue?.
 ````sql
 -- pizza type here means name of pizza
 with cte as (
@@ -241,7 +241,7 @@ order by percenatge_revenue desc
 | Chicken   | 195919.50      | 23.96                 |
 | Veggie    | 193690.45      | 23.68                 |
 
--- Q12: Analyze the cumulative revenue generated over time.
+-- Q12: Analyze the cumulative revenue generated over time?.
 ````sql
 -- Final result
 SELECT 
@@ -353,7 +353,7 @@ ORDER BY o.date;
 
 
 
--- Q13: Determine the top 3 most ordered pizza types based on revenue for each pizza category
+-- Q13: Determine the top 3 most ordered pizza types based on revenue for each pizza category?.
 ````sql
 with cte as (
 select pt.category,name,ROUND(SUM(od.quantity * p.price), 2) AS pizza_type_revenue,
